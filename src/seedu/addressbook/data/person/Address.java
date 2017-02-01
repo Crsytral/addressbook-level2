@@ -13,6 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -26,7 +30,12 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        String[] addressDetails = trimmedAddress.split(", ");
+        block = new Block(addressDetails[0]);
+        street = new Street (addressDetails[1]);
+        unit = new Unit (addressDetails[2]);	
+        postalCode = new PostalCode (addressDetails[3]);
+        this.value = block.getBlock()+", "+street.getStreet()+", "+unit.getUnit()+", "+postalCode.getPostalCode();
     }
 
     /**
@@ -56,4 +65,77 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+    
+}
+
+class Block{
+	private String block;
+	
+	public Block(){}
+	
+	public Block(String block){
+		this.block = block;
+	}
+	
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
+}
+
+class Street{
+	private String street;
+	
+	public Street(){}
+	
+	public Street(String street){
+		this.street = street;
+	}
+	
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+}
+
+class Unit{
+	private String unit;
+	
+	public Unit(){}
+	
+	public Unit(String unit){
+		this.unit = unit;
+	}
+	
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+}
+
+class PostalCode{
+	private String postalCode;
+	
+	public PostalCode(){}
+	
+	public PostalCode(String postalCode){
+		this.postalCode = postalCode;
+	}
+	
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
 }
