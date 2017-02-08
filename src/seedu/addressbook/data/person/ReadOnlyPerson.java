@@ -13,6 +13,7 @@ public interface ReadOnlyPerson {
     Phone getPhone();
     Email getEmail();
     Address getAddress();
+    int getSequenceNumber();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -55,6 +56,8 @@ public interface ReadOnlyPerson {
             builder.append(detailIsPrivate);
         }
         builder.append(getAddress())
+                .append(" Sequence number: ");
+        builder.append(getSequenceNumber())
                 .append(" Tags: ");
         for (Tag tag : getTags()) {
             builder.append(tag);
