@@ -5,5 +5,5 @@ package seedu.addressbook.data.person;
  * so that each class produces a printable string representation of the object.
  */
 public interface Printable {
-	public String getPrintableString();
+    public String getPrintableString();
 }
